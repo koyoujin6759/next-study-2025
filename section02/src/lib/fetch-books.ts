@@ -2,7 +2,7 @@ import { BookData } from "@/types";
 
 export default async function fetchBooks(q?: string): Promise<BookData[]> {
   //q? -> 선택적 프로퍼티, 꼭받지 않아도되는 매개변수
-  let url = "http://localhost:12345/book";
+  let url = "https://onebite-books-server-main-ten-wine.vercel.app/book";
 
   if (q) {
     //검색어가 있다면
