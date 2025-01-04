@@ -9,8 +9,11 @@ export function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 }
 
-export default async function Page({ params }: { params: { id: string | string[] } }) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${params.id}`);
+type Params = Promise<{ id: string | string[] }>;
+
+export default async function Page({ params }: { params: Params }) {
+  const { id } = await params;
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${id}`);
 
   if (!response.ok) {
     if (response.status === 404) {
